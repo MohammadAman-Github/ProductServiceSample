@@ -1,17 +1,23 @@
 package com.aman.sample.productservicesample.Service;
 
 import com.aman.sample.productservicesample.DTOs.FakeStoredto;
+import com.aman.sample.productservicesample.Exceptions.ProductNotFoundException;
 import com.aman.sample.productservicesample.Models.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class FakeStoreProductService implements ProductService{
+public class FakeStoreProductService implements ProductService  {
     @Override
-    public Product getproductbyId(long id) {
+    public Product getproductbyId(long id) throws ProductNotFoundException {
         RestTemplate  restTemplate = new RestTemplate();
         String url = "https://fakestoreapi.com/products/" + id;
         FakeStoredto fakeStoredto = restTemplate.getForObject(url, FakeStoredto.class);
+        if(fakeStoredto == null) {
+            throw new ProductNotFoundException("Product with ProductId: " + id +
+                    " was not found");
+        }
+
         return convertfakeStoredtointoProduct (fakeStoredto);
 
     }

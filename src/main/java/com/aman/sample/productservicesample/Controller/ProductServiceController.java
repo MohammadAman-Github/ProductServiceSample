@@ -1,5 +1,6 @@
-package com.aman.sample.productservicesample.SampleController;
+package com.aman.sample.productservicesample.Controller;
 
+import com.aman.sample.productservicesample.Exceptions.ProductNotFoundException;
 import com.aman.sample.productservicesample.Models.Product;
 import com.aman.sample.productservicesample.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +17,19 @@ public class ProductServiceController {
     @Autowired
     public ProductService ProductService;
     @GetMapping("/{ProductId}")
-    public ResponseEntity<Product> getproductbyId(@PathVariable ("ProductId") long id){
-        if(id < 1 || id > 20)
-        {
-            //String error = "Product Id must be between 1 and 20";
-            /*
-            not able to return bcz return type in response entity is Product , not String
-            we have to convert the return type .
-            or try some other methode.
-             */
-            return new ResponseEntity<>(HttpStatusCode.valueOf(400));
-        }
+    public ResponseEntity<Product> getproductbyId(@PathVariable ("ProductId") long id)
+    throws ProductNotFoundException {
+//        if(id < 1 || id > 20)
+//        {
+//            //String error = "Product Id must be between 1 and 20";
+//            /*
+//            not able to return bcz return type in response entity is Product , not String
+//            we have to convert the return type .
+//            or try some other methode
+//            Try exception handelling for showing error in string formate.
+//             */
+//            return new ResponseEntity<>(HttpStatusCode.valueOf(400));
+//        }
         Product product = ProductService.getproductbyId(id);
         return new ResponseEntity<>(product, HttpStatusCode.valueOf(200));
     }

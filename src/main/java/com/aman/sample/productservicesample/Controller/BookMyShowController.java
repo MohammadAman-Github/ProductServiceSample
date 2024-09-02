@@ -1,4 +1,4 @@
-package com.aman.sample.productservicesample.SampleController;
+package com.aman.sample.productservicesample.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
