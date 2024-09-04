@@ -26,7 +26,7 @@ public class ProductServiceController {
 //            not able to return bcz return type in response entity is Product , not String
 //            we have to convert the return type .
 //            or try some other methode
-//            Try exception handelling for showing error in string formate.
+//            Try exception handeling for showing error in string formate.
 //             */
 //            return new ResponseEntity<>(HttpStatusCode.valueOf(400));
 //        }
