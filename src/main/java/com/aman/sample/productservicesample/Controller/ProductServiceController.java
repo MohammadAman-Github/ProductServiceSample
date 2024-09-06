@@ -1,20 +1,20 @@
 package com.aman.sample.productservicesample.Controller;
 
+import com.aman.sample.productservicesample.DTOs.CreateProductRequestDto;
 import com.aman.sample.productservicesample.Exceptions.ProductNotFoundException;
 import com.aman.sample.productservicesample.Models.Product;
 import com.aman.sample.productservicesample.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/Product")
+@RequestMapping("/Products")
 public class ProductServiceController {
     @Autowired
+    @Qualifier ("DBImpl")
     public ProductService ProductService;
     @GetMapping("/{ProductId}")
     public ResponseEntity<Product> getproductbyId(@PathVariable ("ProductId") long id)
@@ -32,5 +32,20 @@ public class ProductServiceController {
 //        }
         Product product = ProductService.getproductbyId(id);
         return new ResponseEntity<>(product, HttpStatusCode.valueOf(200));
+    }
+
+    @PostMapping()
+    public Product createProduct(@RequestBody CreateProductRequestDto requestDto) throws ProductNotFoundException {
+         System.out.println(requestDto);
+         // add basic validation
+        if(requestDto.getName() == ""){
+            throw new ProductNotFoundException("Product name is required");
+        }
+        if(requestDto.getName() == null){
+            throw new ProductNotFoundException("Product name is required");
+        }
+
+        return ProductService.creatProduct(requestDto.getName(), requestDto.getDescription(),
+                requestDto.getPrice(), requestDto.getCategory(), requestDto.getImage());
     }
 }

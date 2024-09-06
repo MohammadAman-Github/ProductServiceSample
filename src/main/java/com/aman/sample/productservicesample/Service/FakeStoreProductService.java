@@ -6,12 +6,12 @@ import com.aman.sample.productservicesample.Models.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-@Service
+@Service("FakeStore")
 public class FakeStoreProductService implements ProductService  {
     @Override
     public Product getproductbyId(long id) throws ProductNotFoundException {
-        RestTemplate  restTemplate = new RestTemplate();
-        String url = "https://fakestoreapi.com/products/" + id;
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "https://freetestapi.com/api/v1/products/" + id;
         FakeStoredto fakeStoredto = restTemplate.getForObject(url, FakeStoredto.class);
         if(fakeStoredto == null) {
             throw new ProductNotFoundException("Product with ProductId: " + id +
@@ -21,6 +21,12 @@ public class FakeStoreProductService implements ProductService  {
         return convertfakeStoredtointoProduct (fakeStoredto);
 
     }
+
+    @Override
+    public Product creatProduct(String name, String description, double price, String category, String image) {
+        return null;
+    }
+
     private Product convertfakeStoredtointoProduct (FakeStoredto fakeStoredto) {
         Product product = new Product();
         product.setId(fakeStoredto.getId());
