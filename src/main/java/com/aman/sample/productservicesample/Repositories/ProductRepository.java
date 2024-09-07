@@ -30,4 +30,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     // select * from products where name like %{name}%
     List<Product> findByNameContaining(String name);
 
+    // if we want to delete product by id, the query should be like
+    // delete * from products where id = {id}
+
+    void deleteById(long id);
+
 }

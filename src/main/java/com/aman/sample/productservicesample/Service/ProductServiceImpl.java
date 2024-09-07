@@ -1,12 +1,10 @@
 package com.aman.sample.productservicesample.Service;
 
-import com.aman.sample.productservicesample.DTOs.FakeStoredto;
 import com.aman.sample.productservicesample.Exceptions.ProductNotFoundException;
 import com.aman.sample.productservicesample.Models.Product;
 import com.aman.sample.productservicesample.Repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service("DBImpl")
 public class ProductServiceImpl implements ProductService {
@@ -66,5 +64,17 @@ public class ProductServiceImpl implements ProductService {
         product = productRepository.save(product);
         return product;
     }
+
+    @Override
+    public void deleteProduct(long id) throws ProductNotFoundException {
+
+        if(productRepository.findById(id) == null)
+        {
+            throw new ProductNotFoundException("Product with ProductId: " + id +
+                    " was not found");
+        }
+        productRepository.deleteById(id);
+    }
+
 
 }

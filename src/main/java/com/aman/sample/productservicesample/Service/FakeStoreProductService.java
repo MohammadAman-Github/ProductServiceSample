@@ -7,18 +7,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service("FakeStore")
-public class FakeStoreProductService implements ProductService  {
+public class FakeStoreProductService implements ProductService {
     @Override
     public Product getproductbyId(long id) throws ProductNotFoundException {
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://freetestapi.com/api/v1/products/" + id;
         FakeStoredto fakeStoredto = restTemplate.getForObject(url, FakeStoredto.class);
-        if(fakeStoredto == null) {
+        if (fakeStoredto == null) {
             throw new ProductNotFoundException("Product with ProductId: " + id +
                     " was not found");
         }
 
-        return convertfakeStoredtointoProduct (fakeStoredto);
+        return convertfakeStoredtointoProduct(fakeStoredto);
 
     }
 
@@ -31,6 +31,11 @@ public class FakeStoreProductService implements ProductService  {
     @Override
     public Product updateProduct(long id, String name, String description, double price, String category, String image) {
         return null;
+    }
+
+    @Override
+    public void deleteProduct(long id) throws ProductNotFoundException {
+
     }
 
 

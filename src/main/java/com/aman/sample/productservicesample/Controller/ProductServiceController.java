@@ -4,6 +4,7 @@ import com.aman.sample.productservicesample.DTOs.CreateProductRequestDto;
 import com.aman.sample.productservicesample.DTOs.UpdateProductRequestDto;
 import com.aman.sample.productservicesample.Exceptions.ProductNotFoundException;
 import com.aman.sample.productservicesample.Models.Product;
+import com.aman.sample.productservicesample.Repositories.ProductRepository;
 import com.aman.sample.productservicesample.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,6 +18,9 @@ public class ProductServiceController {
     @Autowired
     @Qualifier ("DBImpl")
     public ProductService ProductService;
+    @Autowired
+    private ProductRepository productRepository;
+
     @GetMapping("/{ProductId}")
     public ResponseEntity<Product> getproductbyId(@PathVariable ("ProductId") long id)
     throws ProductNotFoundException {
@@ -57,5 +61,11 @@ public class ProductServiceController {
         Product product = ProductService.updateProduct(id,requestDto.getName(), requestDto.getDescription(),
                 requestDto.getPrice(), requestDto.getCategory(), requestDto.getImage());
         return new ResponseEntity<>(product, HttpStatusCode.valueOf(200));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable ("id") long id) throws ProductNotFoundException{
+        ProductService.deleteProduct(id);
+        return  ResponseEntity.noContent().build();
     }
 }
