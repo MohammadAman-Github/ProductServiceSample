@@ -27,6 +27,13 @@ public class FakeStoreProductService implements ProductService  {
         return null;
     }
 
+
+    @Override
+    public Product updateProduct(long id, String name, String description, double price, String category, String image) {
+        return null;
+    }
+
+
     private Product convertfakeStoredtointoProduct (FakeStoredto fakeStoredto) {
         Product product = new Product();
         product.setId(fakeStoredto.getId());

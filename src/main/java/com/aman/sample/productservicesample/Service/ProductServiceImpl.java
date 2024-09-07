@@ -1,10 +1,12 @@
 package com.aman.sample.productservicesample.Service;
 
+import com.aman.sample.productservicesample.DTOs.FakeStoredto;
 import com.aman.sample.productservicesample.Exceptions.ProductNotFoundException;
 import com.aman.sample.productservicesample.Models.Product;
 import com.aman.sample.productservicesample.Repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 @Service("DBImpl")
 public class ProductServiceImpl implements ProductService {
@@ -14,7 +16,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getproductbyId(long id) throws ProductNotFoundException {
-        return null;
+        Product p = productRepository.findById(id);
+        if (p == null) {
+            throw new ProductNotFoundException("Product not found");
+        }
+        return p;
     }
 
     @Override
@@ -37,6 +43,27 @@ public class ProductServiceImpl implements ProductService {
         product.setImage(image);
         product = productRepository.save(product);
         System.out.println(product.getId());
+        return product;
+    }
+
+
+    @Override
+    public Product updateProduct(long id, String name, String description,
+                                 double price, String category, String image) throws ProductNotFoundException {
+        Product p = productRepository.findById(id);
+        if (p == null)
+        {
+            throw new ProductNotFoundException("Product with ProductId: " + id +
+                    " was not found");
+        }
+        Product product = new Product();
+        product.setId(id);
+        product.setName(name);
+        product.setDescription(description);
+        product.setPrice(price);
+        product.setCategory(category);
+        product.setImage(image);
+        product = productRepository.save(product);
         return product;
     }
 

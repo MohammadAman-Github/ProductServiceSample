@@ -9,5 +9,6 @@ public interface ProductService {
     public Product creatProduct(String name ,String description,double price,
                                 String category ,String image);
 
-
+    Product updateProduct(long id, String name, String description, double price,
+                          String category, String image) throws ProductNotFoundException;
 }
