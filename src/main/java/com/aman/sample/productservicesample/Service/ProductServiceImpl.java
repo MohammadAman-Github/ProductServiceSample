@@ -1,8 +1,10 @@
 package com.aman.sample.productservicesample.Service;
 
+import com.aman.sample.productservicesample.DTOs.updateProductpartiallyDto;
 import com.aman.sample.productservicesample.Exceptions.ProductNotFoundException;
 import com.aman.sample.productservicesample.Models.Product;
 import com.aman.sample.productservicesample.Repositories.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -74,6 +76,24 @@ public class ProductServiceImpl implements ProductService {
                     " was not found");
         }
         productRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public Product updateProductpartillay(long id, updateProductpartiallyDto requestDto) throws ProductNotFoundException {
+        if(productRepository.findById(id) == null)
+        {
+            throw new ProductNotFoundException("Product with ProductId: " + id +
+                    " was not found");
+        }
+        Product product = productRepository.findById(id);
+        product.setName(requestDto.getName());
+        product.setDescription(requestDto.getDescription());
+        product.setPrice(requestDto.getPrice());
+        product.setCategory(requestDto.getCategory());
+        product.setImage(requestDto.getImage());
+        return productRepository.save(product);
+
     }
 
 

@@ -1,6 +1,7 @@
 package com.aman.sample.productservicesample.Service;
 
 import com.aman.sample.productservicesample.DTOs.FakeStoredto;
+import com.aman.sample.productservicesample.DTOs.updateProductpartiallyDto;
 import com.aman.sample.productservicesample.Exceptions.ProductNotFoundException;
 import com.aman.sample.productservicesample.Models.Product;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,11 @@ public class FakeStoreProductService implements ProductService {
     @Override
     public void deleteProduct(long id) throws ProductNotFoundException {
 
+    }
+
+    @Override
+    public Product updateProductpartillay(long id, updateProductpartiallyDto requestDto) {
+        return null;
     }
 
 

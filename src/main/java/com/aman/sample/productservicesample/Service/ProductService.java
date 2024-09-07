@@ -1,5 +1,6 @@
 package com.aman.sample.productservicesample.Service;
 
+import com.aman.sample.productservicesample.DTOs.updateProductpartiallyDto;
 import com.aman.sample.productservicesample.Exceptions.ProductNotFoundException;
 import com.aman.sample.productservicesample.Models.Product;
 
@@ -13,4 +14,6 @@ public interface ProductService {
                           String category, String image) throws ProductNotFoundException;
 
     public void deleteProduct(long id) throws ProductNotFoundException;
+
+    public Product updateProductpartillay(long id, updateProductpartiallyDto requestDto) throws ProductNotFoundException;
 }

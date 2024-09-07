@@ -2,6 +2,7 @@ package com.aman.sample.productservicesample.Controller;
 
 import com.aman.sample.productservicesample.DTOs.CreateProductRequestDto;
 import com.aman.sample.productservicesample.DTOs.UpdateProductRequestDto;
+import com.aman.sample.productservicesample.DTOs.updateProductpartiallyDto;
 import com.aman.sample.productservicesample.Exceptions.ProductNotFoundException;
 import com.aman.sample.productservicesample.Models.Product;
 import com.aman.sample.productservicesample.Repositories.ProductRepository;
@@ -67,5 +68,10 @@ public class ProductServiceController {
     public ResponseEntity<String> deleteProduct(@PathVariable ("id") long id) throws ProductNotFoundException{
         ProductService.deleteProduct(id);
         return  ResponseEntity.ok("Product deleted successfully");
+    }
+    @PatchMapping("/{id}")
+    public ResponseEntity<Product> updateProductpartially(@PathVariable ("id") long id, @RequestBody updateProductpartiallyDto requestdto) throws ProductNotFoundException{
+        Product updated_product = ProductService.updateProductpartillay(id, requestdto);
+        return ResponseEntity.ok(updated_product);
     }
 }
