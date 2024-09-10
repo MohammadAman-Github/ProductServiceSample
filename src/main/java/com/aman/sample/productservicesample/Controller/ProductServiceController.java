@@ -26,7 +26,7 @@ public class ProductServiceController {
     public ResponseEntity<Product> getproductbyId(@PathVariable ("ProductId") long id)
     throws ProductNotFoundException {
 //        if(id < 1 || id > 20)
-//        {
+//        {1
 //            //String error = "Product Id must be between 1 and 20";
 //            /*
 //            not able to return bcz return type in response entity is Product , not String

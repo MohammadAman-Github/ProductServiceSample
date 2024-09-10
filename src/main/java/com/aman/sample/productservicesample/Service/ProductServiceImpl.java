@@ -8,6 +8,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service("DBImpl")
 public class ProductServiceImpl implements ProductService {
 
@@ -20,6 +22,15 @@ public class ProductServiceImpl implements ProductService {
         if (p == null) {
             throw new ProductNotFoundException("Product not found");
         }
+//        Optional<Product> optionalProduct = productRepository.findProductById(id);
+//        if(optionalProduct.isPresent()){
+//            Product product = optionalProduct.get();
+//            return product;
+//        }
+//        else{
+//            throw new ProductNotFoundException("Product not found");
+//        }
+
         return p;
     }
 
@@ -87,14 +98,29 @@ public class ProductServiceImpl implements ProductService {
                     " was not found");
         }
         Product product = productRepository.findById(id);
-        product.setName(requestDto.getName());
-        product.setDescription(requestDto.getDescription());
-        product.setPrice(requestDto.getPrice());
-        product.setCategory(requestDto.getCategory());
-        product.setImage(requestDto.getImage());
+//        product.setName(requestDto.getName());
+//        product.setDescription(requestDto.getDescription());
+//        product.setPrice(requestDto.getPrice());
+//        product.setCategory(requestDto.getCategory());
+//        product.setImage(requestDto.getImage());
+
+        if (requestDto.getName() != null) {
+            product.setName(requestDto.getName());
+        }
+        if (requestDto.getDescription() != null) {
+            product.setDescription(requestDto.getDescription());
+        }
+        if (requestDto.getPrice() != 0) {
+            product.setPrice(requestDto.getPrice());
+        }
+        if (requestDto.getCategory() != null) {
+            product.setCategory(requestDto.getCategory());
+        }
+        if (requestDto.getImage() != null) {
+            product.setImage(requestDto.getImage());
+        }
         return productRepository.save(product);
 
     }
-
 
 }
