@@ -18,20 +18,20 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getproductbyId(long id) throws ProductNotFoundException {
-        Product p = productRepository.findById(id);
-        if (p == null) {
-            throw new ProductNotFoundException("Product not found");
-        }
-//        Optional<Product> optionalProduct = productRepository.findProductById(id);
-//        if(optionalProduct.isPresent()){
-//            Product product = optionalProduct.get();
-//            return product;
-//        }
-//        else{
+//        Product p = productRepository.findById(id);
+//        if (p == null) {
 //            throw new ProductNotFoundException("Product not found");
 //        }
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if(optionalProduct.isPresent()){
+            Product product = optionalProduct.get();
+            return product;
+        }
+        else{
+            throw new ProductNotFoundException("Product with Product_Id : " + id + " was not found");
+        }
 
-        return p;
+//        return p;
     }
 
     @Override
@@ -61,21 +61,25 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product updateProduct(long id, String name, String description,
                                  double price, String category, String image) throws ProductNotFoundException {
-        Product p = productRepository.findById(id);
-        if (p == null)
+        Optional<Product> p = productRepository.findById(id);
+        if (p.isEmpty())
         {
             throw new ProductNotFoundException("Product with ProductId: " + id +
                     " was not found");
         }
-        Product product = new Product();
-        product.setId(id);
-        product.setName(name);
-        product.setDescription(description);
-        product.setPrice(price);
-        product.setCategory(category);
-        product.setImage(image);
-        product = productRepository.save(product);
-        return product;
+        else {
+            Product product = p.get();
+            product.setId(id);
+            product.setName(name);
+            product.setDescription(description);
+            product.setPrice(price);
+            product.setCategory(category);
+            product.setImage(image);
+            product = productRepository.save(product);
+            return product;
+        }
+
+
     }
 
     @Override
@@ -92,34 +96,63 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public Product updateProductpartillay(long id, updateProductpartiallyDto requestDto) throws ProductNotFoundException {
-        if(productRepository.findById(id) == null)
-        {
-            throw new ProductNotFoundException("Product with ProductId: " + id +
-                    " was not found");
-        }
-        Product product = productRepository.findById(id);
-//        product.setName(requestDto.getName());
-//        product.setDescription(requestDto.getDescription());
-//        product.setPrice(requestDto.getPrice());
-//        product.setCategory(requestDto.getCategory());
-//        product.setImage(requestDto.getImage());
+//        if(productRepository.findById(id) == null)
+//        {
+//            throw new ProductNotFoundException("Product with ProductId: " + id +
+//                    " was not found");
+//        }
 
-        if (requestDto.getName() != null) {
-            product.setName(requestDto.getName());
+//
+//        if (requestDto.getName() != null) {
+//            product.setName(requestDto.getName());
+//        }
+//        if (requestDto.getDescription() != null) {
+//            product.setDescription(requestDto.getDescription());
+//        }
+//        if (requestDto.getPrice() != 0) {
+//            product.setPrice(requestDto.getPrice());
+//        }
+//        if (requestDto.getCategory() != null) {
+//            product.setCategory(requestDto.getCategory());
+//        }
+//        if (requestDto.getImage() != null) {
+//            product.setImage(requestDto.getImage());
+//        }
+//        return productRepository.save(product);
+
+        /*
+        We can use above written methode also or we can choose to write code with Optional mehtode as written below
+        both will work
+         */
+
+        Optional<Product> p = productRepository.findById(id);
+        if(p.isPresent())
+        {
+            Product product = p.get();
+            // Update fields only if they are present in the request DTO
+            if (requestDto.getName() != null) {
+                product.setName(requestDto.getName());
+            }
+            if (requestDto.getDescription() != null) {
+                product.setDescription(requestDto.getDescription());
+            }
+            if (requestDto.getPrice() != 0) {
+                product.setPrice(requestDto.getPrice());
+            }
+            if (requestDto.getCategory() != null) {
+                product.setCategory(requestDto.getCategory());
+            }
+            if (requestDto.getImage() != null) {
+                product.setImage(requestDto.getImage());
+            }
+
+            // Save the updated product
+            product =  productRepository.save(product);
+            return product;
         }
-        if (requestDto.getDescription() != null) {
-            product.setDescription(requestDto.getDescription());
+        else{
+            throw new ProductNotFoundException("Product not found");
         }
-        if (requestDto.getPrice() != 0) {
-            product.setPrice(requestDto.getPrice());
-        }
-        if (requestDto.getCategory() != null) {
-            product.setCategory(requestDto.getCategory());
-        }
-        if (requestDto.getImage() != null) {
-            product.setImage(requestDto.getImage());
-        }
-        return productRepository.save(product);
 
     }
 

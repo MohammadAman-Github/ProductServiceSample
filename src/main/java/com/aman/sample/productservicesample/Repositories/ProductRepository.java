@@ -14,7 +14,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     Product findByName(String name);
 
     // find product by id --> SElect * form products where id = {id}
-    Product findById(long id);
+    //Product findById(long id);
 
     // find product by id and name
     // Select * from products where id = {id} AND name = {name}
@@ -38,7 +38,12 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findAllByCategory(String category);
 
-   // Optional<Product> findProductById(long id);
+    Optional<Product> findById(long id);
 
+    List<Product> findAllByNameLike(String name);
+
+    List<Product> findAllByNameLikeIgnoreCase(String name);
+
+    List<Product> findAllByIdLessThan(long id);
 
 }

@@ -1,9 +1,11 @@
 package com.aman.sample.productservicesample.Controller;
 
 import com.aman.sample.productservicesample.DTOs.CreateProductRequestDto;
+import com.aman.sample.productservicesample.DTOs.OrderRequestDto;
 import com.aman.sample.productservicesample.DTOs.UpdateProductRequestDto;
 import com.aman.sample.productservicesample.DTOs.updateProductpartiallyDto;
 import com.aman.sample.productservicesample.Exceptions.ProductNotFoundException;
+import com.aman.sample.productservicesample.Models.Order_Table;
 import com.aman.sample.productservicesample.Models.Product;
 import com.aman.sample.productservicesample.Repositories.ProductRepository;
 import com.aman.sample.productservicesample.Service.ProductService;
@@ -74,4 +76,5 @@ public class ProductServiceController {
         Product updated_product = ProductService.updateProductpartillay(id, requestdto);
         return ResponseEntity.ok(updated_product);
     }
+
 }
