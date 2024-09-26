@@ -34,18 +34,4 @@ build/
 .mvn
 mvnw
 mvnw.cmd
-src/main/java/com/aman/sample/productservicesample/Controller/OrderServiceController.java
-        src/main/java/com/aman/sample/productservicesample/DTOs/OrderRequestDto.java
-        src/main/java/com/aman/sample/productservicesample/Exceptions/OrderNotFoundException.java
-        src/main/java/com/aman/sample/productservicesample/Models/Order_Table.java
-        src/main/java/com/aman/sample/productservicesample/Repositories/OrderRepository.java
-        src/main/java/com/aman/sample/productservicesample/Service/OrderService.java
-        src/main/java/com/aman/sample/productservicesample/Service/OrderServiceImpL.java
-        src/main/resources/db/
- modified:   src/main/java/com/aman/sample/productservicesample/Advise/ControllerAdvise.java
-        modified:   src/main/java/com/aman/sample/productservicesample/Controller/BookMyShowController.java
-        modified:   src/main/java/com/aman/sample/productservicesample/Controller/ProductServiceController.java
-        modified:   src/main/java/com/aman/sample/productservicesample/Repositories/ProductRepository.java
-        modified:   src/main/java/com/aman/sample/productservicesample/Service/ProductServiceImpl.java
-        modified:   src/main/resources/application.properties
 
