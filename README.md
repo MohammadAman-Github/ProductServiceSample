@@ -8,28 +8,32 @@ relationships and advanced JPA concepts.
 
 ## 🧰 Tech Stack
 
-- **Java** (22 SDKs)
-- **Spring Boot**
-- **Spring Web**
-- **Spring Data JPA**
-- **MySQL**
-- **REST APIs**
-- **Lombok**
-- **Postman** (for API testing)
+- **Java** (22)
+- **Spring Boot**, **Spring Web**, **Spring Data JPA**
+- **MySQL** for local persistence
+- **FakeStore API** integration (external REST)
+- **DTOs → Models → Services → Controllers** structure
+- **Lombok** for boilerplate reduction
+- **RestTemplate** for inter-service API calls
+- **Maven** for build/dependency management
 
 ---
 
 ## 📦 Project Structure
 
-- `Controller/` – Exposes REST endpoints
-- `DTOs/` – For data transfer objects
-- `Models/` – Represents database entities
-- `Repositories/` – JPA repository interfaces
-- `Services/`  
-  - `ProductServiceImpl` – Local database-based implementation  
-  - `FakeStoreProductService` – REST client implementation using [FakeStore API](https://fakestoreapi.com/)
-
-These services are cleanly handled using Spring's `@Qualifier` annotation to switch between implementations where needed.
+src/main/java/com.demo.productservicesample/
+├── Controllers – Exposes REST endpoints
+├── DTOs – For data transfer objects
+├── Models – Represents database entities
+├── Repositories – JPA repository interfaces
+├── Services
+{These services are cleanly handled using Spring's `@Qualifier` annotation to switch between implementations where needed.}
+│ ├── FakeStoreProductService.java – REST client implementation using [FakeStore API](https://fakestoreapi.com/)
+│ └── ProductServiceImpl.java - Local database-based implementation 
+└── practice/
+├── inheritance_in_db/
+├── cardinalities/
+└── db_migration/
 
 ---
 
@@ -52,9 +56,10 @@ These services are cleanly handled using Spring's `@Qualifier` annotation to swi
 
 This project demonstrates working with two service implementations:
 
-1. **`FakeStoreProductService`**  
-   Connects with FakeStore's external REST API to fetch, add, and update product details.
-
+1. **`FakeStoreProductService`**
+   - Uses `RestTemplate` to fetch, add, update products via FakeStore ([fakestoreapi.com](https://fakestoreapi.com/))
+   - Ideal for rapid prototyping or external API demo
+  
 2. **`ProductServiceImpl`**  
    Interacts with the local MySQL database using Spring Data JPA.
 
@@ -75,30 +80,30 @@ These were added for **learning purposes** and represent practical understanding
 
 ---
 
-## 🧪 API Testing
-
+🧪 API Endpoints
 You can test all endpoints using Postman or cURL. Base URL (when run locally):
-
 http://localhost:8081/
 
-
-Example endpoints:
-
-- `GET /products/1`
-- `POST /products`
-- `PUT /products/2`
-- `DELETE /products/3`
-- `GET /products/search?name=shirt`
+Method	   URL	                          Description
+POST	   /products	                   Create a new product
+GET	     /products	                   List all products
+GET	     /products/{id}	               Get product by ID
+PUT	     /products/{id}	               Update product by ID
+DELETE	 /products/{id}	               Delete product by ID
+GET	     /products/search?name=xxx	   Search products whose name contains xxx
 
 ---
 
 ## 🎯 Why This Project?
 
 This project was built to strengthen backend fundamentals by combining:
-- Real REST API consumption
-- Local DB operations
-- Clean architecture with service layers
-- Practice with database design and migrations
+
+- Learning REST and microservice concepts
+- Exploring layered architecture in Spring Boot
+- Understanding multiple service implementations via @Qualifier
+- Practicing JPA with inheritance, migrations, and relationships
+- Building an e-commerce backend that consumes external APIs
+
 
 ## 🧑‍💻 Author
 
