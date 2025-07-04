@@ -1,7 +1,7 @@
 # 🛍️ ProductServiceSample
 
 A backend Spring Boot project that simulates an e-commerce product management system.
-It supports multiple product services (like FakeStore API and internal service) and implements RESTful APIs for CRUD operations,along with additional practice modules for database
+It supports multiple product services (like FakeStore API and internal service) and implements RESTful APIs for CRUD operations, along with additional practice modules for database
 relationships and advanced JPA concepts.
 
 ---
@@ -82,15 +82,16 @@ These were added for **learning purposes** and represent practical understanding
 
 🧪 API Endpoints
 You can test all endpoints using Postman or cURL. Base URL (when run locally):
-http://localhost:8081/
+http://localhost:8081/products
 
-Method	   URL	                          Description
-POST	   /products	                   Create a new product
-GET	     /products	                   List all products
-GET	     /products/{id}	               Get product by ID
-PUT	     /products/{id}	               Update product by ID
-DELETE	 /products/{id}	               Delete product by ID
-GET	     /products/search?name=xxx	   Search products whose name contains xxx
+| Method | Endpoint                             | Description                      |
+|--------|--------------------------------------|----------------------------------|
+| POST   | `/products`                          | Create a new product             |
+| GET    | `/products`                          | Get all products                 |
+| GET    | `/products/{id}`                     | Get product by ID                |
+| PUT    | `/products/{id}`                     | Update an existing product       |
+| DELETE | `/products/{id}`                     | Delete a product by ID           |
+| GET    | `/products/search?name=xxx`          | Search products by name pattern  |
 
 ---
 
@@ -107,7 +108,7 @@ This project was built to strengthen backend fundamentals by combining:
 
 ## 🧑‍💻 Author
 
-Made with 💻 by **Mohammad Aman**  
+**Handled by Mohammad Aman**  
 Backend Developer | Spring Boot Enthusiast | Open to learning  
 [GitHub Profile »](https://github.com/MohammadAman-Github)
 
