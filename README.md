@@ -1,4 +1,4 @@
-# 🛍️ ProductServiceSample
+# ProductServiceSample
 
 A backend Spring Boot project that simulates an e-commerce product management system.
 It supports multiple product services (like FakeStore API and internal service) and implements RESTful APIs for CRUD operations, along with additional practice modules for database
@@ -6,7 +6,7 @@ relationships and advanced JPA concepts.
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 - **Java** (22)
 - **Spring Boot**, **Spring Web**, **Spring Data JPA**
@@ -19,7 +19,7 @@ relationships and advanced JPA concepts.
 
 ---
 
-## 📦 Project Structure
+## Project Structure
 
 src/main/java/com.demo.productservicesample/
 ├── Controllers – Exposes REST endpoints
@@ -37,7 +37,7 @@ src/main/java/com.demo.productservicesample/
 
 ---
 
-## 🚀 Features
+## Features
 
 - Add a product
 - Get product by ID
@@ -52,7 +52,7 @@ src/main/java/com.demo.productservicesample/
 
 ---
 
-## 🔀 Dual Service Implementation
+## Dual Service Implementation
 
 This project demonstrates working with two service implementations:
 
@@ -63,24 +63,24 @@ This project demonstrates working with two service implementations:
 2. **`ProductServiceImpl`**  
    Interacts with the local MySQL database using Spring Data JPA.
 
-🔧 These are managed cleanly using Spring’s `@Qualifier`, allowing seamless switching and flexibility.
+These are managed cleanly using Spring’s `@Qualifier`, allowing seamless switching and flexibility.
 
 ---
 
-## 🧠 Learning & Practice Modules
+## Learning & Practice Modules
 
 This project includes additional sub-packages focused on learning and deepening backend understanding:
 
-- 📚 **`inheritance_in_db/`** – JPA inheritance strategies (`@Inheritance`, `@DiscriminatorColumn`, etc.)
-- 🔗 **`cardinalities/`** – Practice entity relationships like OneToOne, OneToMany, ManyToMany
-- ⚙️ **`db_migration/`** – Understand how database schema can evolve with model changes
-- 🌐 **FakeStore API Integration** – Demonstrates consumption of third-party REST APIs
+- **`inheritance_in_db/`** – JPA inheritance strategies (`@Inheritance`, `@DiscriminatorColumn`, etc.)
+- **`cardinalities/`** – Practice entity relationships like OneToOne, OneToMany, ManyToMany
+- **`db_migration/`** – Understand how database schema can evolve with model changes
+- **FakeStore API Integration** – Demonstrates consumption of third-party REST APIs
 
 These were added for **learning purposes** and represent practical understanding of backend software engineering.
 
 ---
 
-🧪 API Endpoints
+API Endpoints
 You can test all endpoints using Postman or cURL. Base URL (when run locally):
 http://localhost:8081/products
 
@@ -95,7 +95,7 @@ http://localhost:8081/products
 
 ---
 
-## 🎯 Why This Project?
+## Why This Project?
 
 This project was built to strengthen backend fundamentals by combining:
 
@@ -106,7 +106,7 @@ This project was built to strengthen backend fundamentals by combining:
 - Building an e-commerce backend that consumes external APIs
 
 
-## 🧑‍💻 Author
+## Author
 
 **Handled by Mohammad Aman**  
 Backend Developer | Spring Boot Enthusiast | Open to learning  
